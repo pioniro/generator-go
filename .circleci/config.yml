@@ -16,7 +16,7 @@ jobs:
           command: |
             mkdir -p /tmp/test-reports
             go test -v -cover -race -coverprofile=/tmp/test-reports/coverage.out
-            /home/ubuntu/.go_workspace/bin/goveralls -coverprofile=/tmp/test-reports/coverage.out -service=circle-ci -repotoken=$COVERALLS_TOKEN
+            bin/goveralls -coverprofile=/tmp/test-reports/coverage.out -service=circle-ci -repotoken=$COVERALLS_TOKEN
       - store_test_results:
           path: /tmp/test-reports
 
