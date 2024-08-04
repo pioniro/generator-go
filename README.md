@@ -16,6 +16,14 @@ The Generator package in Go provides a set of tools for creating and transformin
 - **Seq function**: This function transforms the generator into a rangefunc, allowing you to use the generator in a for loop in Go 1.23 and later.
 - **Chan function**: This function transforms the generator into a channel, which can be useful for handling potentially infinite generators.
 
+## Installation
+
+Use Go modules to install generator in your application.
+
+```shell
+go get github.com/pioniro/generator-go
+```
+
 ## Usage
 
 Here is a simple example of how to use the Generator package:
@@ -46,3 +54,26 @@ func main() {
     return true
   })
 }
+```
+
+## Benchmarks
+
+```
+$ go1.23rc2 test -bench=. -benchmem
+goos: linux
+goarch: amd64
+pkg: github.com/pioniro/generator-go
+cpu: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz
+BenchmarkEmptyGenerator-8                       1000000000          0.2219 ns/op          0       B/op          0 allocs/op
+BenchmarkEmptyChannels-8                        68596294             17.44 ns/op          0       B/op          0 allocs/op
+Benchmark1MIterates_Generator-8                     4797            240588 ns/op          0       B/op          0 allocs/op
+Benchmark1MIterates_Channel-8                   53218458             18.83 ns/op          0       B/op          0 allocs/op
+Benchmark1MIterates_Seq-8                            763           1621072 ns/op          0       B/op          0 allocs/op
+BenchmarkPipe_Generator-8                            222           5510686 ns/op          0       B/op          0 allocs/op
+BenchmarkPipe_Channel-8                                3         492880323 ns/op          405     B/op          6 allocs/op
+BenchmarkPipe_Plain-8                                316           4407976 ns/op          0       B/op          0 allocs/op
+BenchmarkPipe_PlainCompact-8                        1730            680624 ns/op          0       B/op          0 allocs/op
+BenchmarkPipe_Plain_WithoutPreAllocation-8            38          28357171 ns/op        125034602 B/op        116 allocs/op
+PASS
+ok      github.com/pioniro/generator-go 16.553s
+```

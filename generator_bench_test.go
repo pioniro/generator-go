@@ -57,13 +57,18 @@ func Benchmark1MIterates_Channel(b *testing.B) {
 	}
 }
 
-func Benchmark1MIterates_Seq(b *testing.B) {
-	g := genSeq1M()
-	yield := func(v int) bool { return true }
-	for i := 0; i < b.N; i++ {
-		g(yield)
-	}
-}
+// requires go >=1.23
+//func Benchmark1MIterates_Seq(b *testing.B) {
+//	g := genSeq1M()
+//	yield := func(v int) bool { return true }
+//	for i := 0; i < b.N; i++ {
+//		for v := range g {
+//			if !yield(v) {
+//				break
+//			}
+//		}
+//	}
+//}
 
 func BenchmarkPipe_Generator(b *testing.B) {
 	for i := 0; i < b.N; i++ {
