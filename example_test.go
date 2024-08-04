@@ -65,13 +65,11 @@ func exampleSyncGenerator() {
 }
 
 func exampleChan() {
-	var ints Generator[int] = func(yield Yield[int]) {
-		if !yield(1, nil) || !yield(2, nil) {
-			return
-		}
-	}
+	ints := gen1M()
 	in := ints.Chan(context.Background())
-	for i := range in {
-		fmt.Println(i)
+	for v := range in {
+		if v < 0 {
+			fmt.Printf("new one digit: %d", v)
+		}
 	}
 }

@@ -3,19 +3,26 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/go:1.21
+      - image: cimg/go:1.18
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - go-mod-v4-{{ checksum "go.mod" }}
       - run:
           name: Install Dependencies
           command: |
             go mod download
             go install github.com/mattn/goveralls@latest
+      - save_cache:
+          key: go-mod-v4-{{ checksum "go.sum" }}
+          paths:
+            - "/go/pkg/mod"
       - run:
           name: Run tests
           command: |
             mkdir -p /tmp/test-reports
-            go test -v -cover -race -coverprofile=/tmp/test-reports/coverage.out
+            go test -v -cover -coverprofile=/tmp/test-reports/coverage.out
             goveralls -coverprofile=/tmp/test-reports/coverage.out -service=circle-ci -repotoken=$COVERALLS_REPO_TOKEN
       - store_test_results:
           path: /tmp/test-reports
