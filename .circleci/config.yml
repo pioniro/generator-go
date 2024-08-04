@@ -15,7 +15,7 @@ jobs:
             go mod download
             go install github.com/mattn/goveralls@latest
       - save_cache:
-          key: go-mod-v4-{{ checksum "go.sum" }}
+          key: go-mod-v4-{{ checksum "go.mod" }}
           paths:
             - "/go/pkg/mod"
       - run:
