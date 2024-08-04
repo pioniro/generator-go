@@ -25,7 +25,7 @@ package main
 
 import (
   "fmt"
-  "generator"
+  "github.com/pioniro/generator-go"
 )
 
 func generateNumbers(yield generator.Yield[int]) {
