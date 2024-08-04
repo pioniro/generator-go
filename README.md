@@ -4,6 +4,7 @@ Generator
 [![Go Reference](https://pkg.go.dev/badge/github.com/pioniro/generator-go.svg)](https://pkg.go.dev/github.com/pioniro/generator-go)
 [![Go Report Card](https://goreportcard.com/badge/github.com/pioniro/generator-go)](https://goreportcard.com/report/github.com/pioniro/generator-go)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/pioniro/generator-go/blob/main/LICENSE)
+[![Coverage](https://coveralls.io/repos/github/pioniro/generator-go/badge.svg?branch=main)](https://coveralls.io/github/pioniro/generator-go)
 
 The Generator package in Go provides a set of tools for creating and transforming generators. It is designed to be simple, efficient, and flexible.
 
